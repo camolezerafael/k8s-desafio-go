@@ -1,6 +1,6 @@
 FROM golang:alpine as builder
 
-WORKDIR /src/desafio-go
+WORKDIR /go/src/app
 COPY . .
 
 RUN go get -d -v ./...
@@ -9,6 +9,6 @@ RUN go install -v ./...
 
 FROM scratch
 
-COPY --from=builder /bin/desafio-go /desafio-go
+COPY --from=builder /go/src/app /desafio-go
 
 ENTRYPOINT ["/desafio-go"]
