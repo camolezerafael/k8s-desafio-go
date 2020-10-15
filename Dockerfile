@@ -1,14 +1,14 @@
-FROM golang:alpine as builder
+FROM golang:alpine AS builder
 
-WORKDIR /go/src/app
-COPY . .
+WORKDIR $GOPATH/src/app
+COPY ./src/desafio-go ./
 
-RUN go get -d -v ./...
-RUN go install -v ./...
-
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix nocgo -o /app .
 
 FROM scratch
 
-COPY --from=builder /go/src/app /desafio-go
+COPY --from=builder /app .
 
-CMD ["/desafio-go/webserver"]
+EXPOSE 8000
+
+ENTRYPOINT ["./app"]
