@@ -11,4 +11,4 @@ FROM scratch
 
 COPY --from=builder /go/src/app /desafio-go
 
-ENTRYPOINT ["/desafio-go"]
+CMD ["/desafio-go/webserver"]
