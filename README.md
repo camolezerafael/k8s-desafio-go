@@ -1,1 +1,1 @@
-# fullcycle-desafio-ci
+# fullcycle-k8s-desafio-go (webserver)
